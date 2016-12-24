@@ -2,8 +2,8 @@
     This file will provide functions to lead the data set and provide it to the trainer
 """
 import os
-
-
+import skimage.data
+import numpy as np
 
 def load_belgium_dataset(dataset_dir):
   
