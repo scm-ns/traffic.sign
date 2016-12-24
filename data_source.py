@@ -3,7 +3,10 @@
 """
 import os
 import skimage.data
+import skimage.transform
 import numpy as np
+import matplotlib.pyplot as plt
+
 
 def load_belgium_dataset(dataset_dir):
   
@@ -32,12 +35,33 @@ def load_belgium_dataset(dataset_dir):
             data_y.append(int(d))
     return data_x , data_y 
 
+def display_imgs_labels(images, labels):
+
+    labels_set = set(labels);
+
+    plt.figure(figsize = (15,15))
+
+    idx = 1 ;
+    for label in labels_set : 
+        img = images[labels.index(label)]
+        plt.subplot(8 , 8 , idx)
+        plt.axis('off')
+        plt.title("Label {0} ({1})".format(label , labels.count(label)))
+        idx += 1; 
+        _ = plt.imshow(img)
+    plt.show()
+
+
+def dataset_info(images , limit = 5):
+    for image in images[:limit]:
+        print("shape: {0}, min: {1}, max: {2}".format(image.shape, image.min(), image.max()))
+
+
+
 """
     Assumption : 
         There exists a dataset directory in the directory where this file is run and we will be able to find the images and lebels inside the dataset dir
-
 """
-
 if __name__ == "__main__":
 
     current_dir = os.getcwd();
@@ -49,3 +73,18 @@ if __name__ == "__main__":
 
     # Do a few tests on the images
     print("Labels : {0}\n Total # images : {1}\n ".format(len(set(labels)) , len(images)))
+
+
+    display_imgs_labels(images , labels)
+    
+
+
+    # 32 x 32 images
+    images32 = [skimage.transform.resize(img , (32 , 32))  
+                        for img in images]
+
+    display_imgs_labels(images32 , labels);
+
+
+    dataset_info(images32) 
+

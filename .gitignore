@@ -2,3 +2,4 @@ Bel*
 *.zip
 dataset*
 *.sw*
+*.pyc
