@@ -42,8 +42,8 @@ if __name__ == "__main__":
 
     current_dir = os.getcwd();
 
-    train_data_dir = os.path.join(current_dir, "dataset/BelgiumTSC/Training") 
-    test_data_dir = os.path.join(current_dir , "dataset/BelgiumTSC/Testing") 
+    train_data_dir = os.path.join(current_dir, "dataset/Training") 
+    test_data_dir = os.path.join(current_dir , "dataset/Testing") 
 
     images , labels = load_belgium_dataset(train_data_dir)
 
