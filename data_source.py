@@ -32,11 +32,20 @@ def load_belgium_dataset(dataset_dir):
             y.append(int(d))
     return images , labels
 
+"""
+    Assumption : 
+        There exists a dataset directory in the directory where this file is run and we will be able to find the images and lebels inside the dataset dir
 
-train_data_dir = (os.path("./data/BelgiumTSC/Training") 
-test_data_dir = (os.path("./data/BelgiumTSC/Testing") 
+"""
 
-load_belgium_dataset(train_data_dir)
+if __name__ == "__main__":
 
+    current_dir = os.getcwd();
 
+    train_data_dir = os.path.join(current_dir, "dataset/BelgiumTSC/Training") 
+    test_data_dir = os.path.join(current_dir , "dataset/BelgiumTSC/Testing") 
 
+    images , labels = load_belgium_dataset(train_data_dir)
+
+    # Do a few tests on the images
+    print("Labels : {0}\n Total # images : {1}\n ".format(len(set(labels)) , len(images)))
