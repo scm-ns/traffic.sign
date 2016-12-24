@@ -16,8 +16,8 @@ def load_belgium_dataset(dataset_dir):
     label_dirs = [f for f in os.listdir(dataset_dir)
                         if os.path.isdir(os.path.join(dataset_dir , f))]
 
-    x = []
-    y = []
+    data_x = []
+    data_y = []
 
     for d in label_dirs : 
         label_dir = os.path.join(dataset_dir , d)
@@ -28,9 +28,9 @@ def load_belgium_dataset(dataset_dir):
 
         # get the image from the file names and the get the label from the directory name
         for f in file_names : 
-            x.append(skimage.data.imread(f))
-            y.append(int(d))
-    return images , labels
+            data_x.append(skimage.data.imread(f))
+            data_y.append(int(d))
+    return data_x , data_y 
 
 """
     Assumption : 
