@@ -69,7 +69,6 @@ def load_belgium_test_set():
     return load_belgium_dataset(test_data_dir);
 
 
-
 """
     Assumption : 
         There exists a dataset directory in the directory where this file is run and we will be able to find the images and lebels inside the dataset dir

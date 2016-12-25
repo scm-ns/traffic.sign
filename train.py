@@ -1,5 +1,7 @@
 import data_source
 import tensorflow as tf
+import random
+
 
 """
     Create a class which holds the graph with in it. Create a temlate that can be used without too much effort in differnt situations. 
@@ -76,18 +78,25 @@ def display_prediction_truth():
         predicted_label = prediction[i];
         plt.subplot(5 , 2 , i + 1) 
         plt.axis('off')
-        color = 'green' if true_label == predicted_label else 'red'
+        color = 'green' if true_label == predicted_label else 'red' 
+        plt.text(40 , 10 , "Truth :    {0}\n Prediction : {1} ".format(true_label , predicted_label))
+        plt.imshow(sample_img[i])
 
 
+def evaluate():
+    test_img , test_labels = load_belgium_test_set()
+    test_img_32 = [skimage.transform.resize(img , (32 , 32)) for img in test_img]
 
+    display_imgs_labels(test_img_32 , test_labels)
 
+    predicted = sess.run([predicted_label_op] , feed_dict = {img_ph : test_img_32})[0]
 
+    match_count = sum([int(y == y_) for y , y_ in zip(test_labels , predicted)])
 
+    acc = match_count / len(test_labels)
 
+    print("Accuract : {:.3f}".format(acc))
 
-
-
-
-
+    sess.close()
 
 
