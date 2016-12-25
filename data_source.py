@@ -57,6 +57,18 @@ def dataset_info(images , limit = 5):
         print("shape: {0}, min: {1}, max: {2}".format(image.shape, image.min(), image.max()))
 
 
+def load_belgium_train_set():
+    current_dir = os.getcwd();
+    train_data_dir = os.path.join(current_dir, "dataset/Training") 
+    return load_belgium_dataset(train_data_dir);
+
+
+def load_belgium_test_set():
+    current_dir = os.getcwd();
+    test_data_dir = os.path.join(current_dir, "dataset/Testing") 
+    return load_belgium_dataset(test_data_dir);
+
+
 
 """
     Assumption : 
